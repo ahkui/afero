@@ -17,6 +17,7 @@
 package gcsfs
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"strings"
