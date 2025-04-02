@@ -58,7 +58,7 @@ func newFileInfo(name string, fs *Fs, fileMode os.FileMode) (*FileInfo, error) {
 			res.name = fs.ensureTrailingSeparator(res.name)
 			res.isDir = true
 			return res, nil
-		} else if err.Error() == ErrObjectDoesNotExist.Error() {
+		} else if errors.Is(err, storage.ErrObjectNotExist) {
 			// Folders do not actually "exist" in GCloud, so we have to check, if something exists with
 			// such a prefix
 			bucketName, bucketPath := fs.splitName(name)
